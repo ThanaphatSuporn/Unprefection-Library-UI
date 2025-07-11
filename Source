@@ -1,8 +1,10 @@
 local Library = {}
 Library.Font = ""
 
+
+
 function Library:Window(Name:string,Fonts:string)
-	
+
 	if Fonts == "PatrickHand" then
 		Library.Font = Enum.Font.PatrickHand
 	elseif Fonts == "Arimo" then
@@ -14,7 +16,7 @@ function Library:Window(Name:string,Fonts:string)
 	else -- Leave it empty
 		Library.Font = Enum.Font.SourceSansBold
 	end
-	
+
 	local UiLib = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
@@ -160,7 +162,7 @@ function Library:Window(Name:string,Fonts:string)
 		ButtonBtn.BorderSizePixel = 0
 		ButtonBtn.Size = UDim2.new(0.936381757, 0, 0.0581896566, 0)
 		ButtonBtn.Font = Library.Font
-		ButtonBtn.Text = "Press me"
+		ButtonBtn.Text = NameButton
 		ButtonBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 		ButtonBtn.TextScaled = true
 		ButtonBtn.TextSize = 14.000
@@ -199,7 +201,7 @@ function Library:Window(Name:string,Fonts:string)
 		ToggleBtn.TextWrapped = true
 
 		UICorner_6.Parent = ToggleBtn
-		
+
 		ToggleBtn.MouseButton1Click:Connect(function()
 			Enabled = not Enabled
 
