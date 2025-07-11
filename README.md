@@ -42,3 +42,11 @@ Window:Toggle("Name",function(Enabled)
   --Code
 end)
 ```
+
+---
+
+## Label
+
+```lua
+Window:Label("Text")
+```
