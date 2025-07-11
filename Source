@@ -45,7 +45,7 @@ function Library:Window(Name:string,Fonts:string)
 	UICorner.Parent = Main
 
 	Title.Name = "Title"
-	Title.Text = Name
+	Title.Text = Name or "Unprefection Library"
 	Title.Parent = Main
 	Title.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 	Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -220,7 +220,27 @@ function Library:Window(Name:string,Fonts:string)
 			end
 		end)
 	end
+	
+	function obj:Label(Text:string)
+		local LabelBtn = Instance.new("TextLabel")
+		local UICorner_7 = Instance.new("UICorner")
+		
+		LabelBtn.Name = "LabelBtn"
+		LabelBtn.Parent = Scrolling
+		LabelBtn.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+		LabelBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		LabelBtn.BorderSizePixel = 0
+		LabelBtn.Size = UDim2.new(0.93599999, 0, 0.0579999983, 0)
+		LabelBtn.Font = Library.Font
+		LabelBtn.Text = Text
+		LabelBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		LabelBtn.TextScaled = true
+		LabelBtn.TextSize = 14.000
+		LabelBtn.TextWrapped = true
 
+		UICorner_7.Parent = LabelBtn
+	end
+	
 	return obj
 
 end
