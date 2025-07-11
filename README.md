@@ -1,18 +1,18 @@
 # Unprefection-Library-UI
 
 ---
-##Loadstring
+## Loadstring
 
 ```lua
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ThanaphatSuporn/Unprefection-Library-UI/refs/heads/main/Source"))()
 ```
 
-##Window
+## Window
 
 ```lua
 local Window = Library:Window("Title Here","Fonts here")
 ```
-##Fonts (Leaves as emtpy to default)
+## Fonts (Leaves as emtpy to default)
 
 ```
 PatrickHand
@@ -21,7 +21,7 @@ Garamond
 LuckiestGuy
 ```
 
-##Button
+## Button
 
 ```
 Library:Button("Name",function()
@@ -29,7 +29,7 @@ Library:Button("Name",function()
 end)
 ```
 
-##Toggle Button
+## Toggle Button
 
 ```
 Library:Toggle("Name",function(Enabled)
