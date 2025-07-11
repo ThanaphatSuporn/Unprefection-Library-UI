@@ -4,6 +4,10 @@ Still unfinished
 
 Source Updated
 
+Update
+
+- Add ``Window:Label()``
+
 ## Loadstring
 
 ```lua
