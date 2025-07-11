@@ -29,7 +29,7 @@ LuckiestGuy
 ## Button
 
 ```lua
-Library:Button("Name",function()
+Window:Button("Name",function()
   --Code
 end)
 ```
@@ -38,7 +38,7 @@ end)
 ## Toggle Button
 
 ```lua
-Library:Toggle("Name",function(Enabled)
+Window:Toggle("Name",function(Enabled)
   --Code
 end)
 ```
