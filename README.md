@@ -16,7 +16,7 @@ local Window = Library:Window("Title Here","Fonts here")
 
 ## Fonts (Leaves as emtpy to default)
 
-```
+```txt
 PatrickHand
 Arimo
 Garamond
@@ -26,7 +26,7 @@ LuckiestGuy
 
 ## Button
 
-```
+```lua
 Library:Button("Name",function()
   --Code
 end)
@@ -35,7 +35,7 @@ end)
 
 ## Toggle Button
 
-```
+```lua
 Library:Toggle("Name",function(Enabled)
   --Code
 end)
