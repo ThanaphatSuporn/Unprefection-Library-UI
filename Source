@@ -1,0 +1,226 @@
+local Library = {}
+Library.Font = ""
+
+function Library:Window(Name:string,Fonts:string)
+	
+	if Fonts == "PatrickHand" then
+		Library.Font = Enum.Font.PatrickHand
+	elseif Fonts == "Arimo" then
+		Library.Font = Enum.Font.ArimoBold
+	elseif Fonts == "Garamond" then
+		Library.Font = Enum.Font.Garamond
+	elseif Fonts == "LuckiestGuy" then
+		Library.Font = Enum.Font.LuckiestGuy
+	else -- Leave it empty
+		Library.Font = Enum.Font.SourceSansBold
+	end
+	
+	local UiLib = Instance.new("ScreenGui")
+	local Main = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local Title = Instance.new("TextLabel")
+	local UICorner_2 = Instance.new("UICorner")
+	local CloseButton = Instance.new("TextButton")
+	local UICorner_3 = Instance.new("UICorner")
+	local Scrolling = Instance.new("ScrollingFrame")
+	local UICorner_4 = Instance.new("UICorner")
+	local UIListLayout = Instance.new("UIListLayout")
+
+	UiLib.Name = "UiLib"
+	UiLib.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	UiLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	UiLib.ResetOnSpawn = false
+	UiLib.IgnoreGuiInset = true
+
+	Main.Name = "Main"
+	Main.Parent = UiLib
+	Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Main.BorderSizePixel = 0
+	Main.Position = UDim2.new(0.289104253, 0, 0.299145311, 0)
+	Main.Size = UDim2.new(0.42, 0,0.401, 0)
+
+	UICorner.Parent = Main
+
+	Title.Name = "Title"
+	Title.Text = Name
+	Title.Parent = Main
+	Title.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+	Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Title.BorderSizePixel = 0
+	Title.Position = UDim2.new(0.0238568597, 0, 0.0399999991, 0)
+	Title.Size = UDim2.new(0.887, 0,0.093, 0)
+	Title.Font = Library.Font
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextScaled = true
+	Title.TextSize = 14.000
+	Title.TextWrapped = true
+	Title.TextXAlignment = Enum.TextXAlignment.Left
+
+	UICorner_2.Parent = Title
+
+	CloseButton.Name = "CloseButton"
+	CloseButton.Parent = Main
+	CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+	CloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	CloseButton.BorderSizePixel = 0
+	CloseButton.Position = UDim2.new(0.92395395, 0, 0.0399999991, 0)
+	CloseButton.Size = UDim2.new(0.054, 0,0.093, 0)
+	CloseButton.Font = Library.Font
+	CloseButton.Text = "X"
+	CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	CloseButton.TextScaled = true
+	CloseButton.TextSize = 14.000
+	CloseButton.TextWrapped = true
+
+	UICorner_3.Parent = CloseButton
+
+	Scrolling.Name = "Scrolling"
+	Scrolling.Parent = Main
+	Scrolling.Active = true
+	Scrolling.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+	Scrolling.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Scrolling.BorderSizePixel = 0
+	Scrolling.Position = UDim2.new(0.0238568597, 0, 0.180000007, 0)
+	Scrolling.Size = UDim2.new(0.952, 0,0.773, 0)
+	Scrolling.ScrollBarThickness = 6
+
+	UICorner_4.Parent = Scrolling
+
+	UIListLayout.Parent = Scrolling
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	local function NDUKTPP_fake_script() -- Main.SmoothDrag 
+		local script = Instance.new('LocalScript', Main)
+
+		local Drag = script.Parent
+		local gsCoreGui = game:GetService("CoreGui")
+		local gsTween = game:GetService("TweenService")
+		local UserInputService = game:GetService("UserInputService")
+		local dragging
+		local dragInput
+		local dragStart
+		local startPos
+		local function update(input)
+			local delta = input.Position - dragStart
+			local dragTime = 0.04
+			local SmoothDrag = {}
+			SmoothDrag.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+			local dragSmoothFunction = gsTween:Create(Drag, TweenInfo.new(dragTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), SmoothDrag)
+			dragSmoothFunction:Play()
+		end
+		Drag.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = Drag.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+		Drag.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging and Drag.Size then
+				update(input)
+			end
+		end)
+
+	end
+	coroutine.wrap(NDUKTPP_fake_script)()
+
+	local function CDPQJ_fake_script() -- CloseButton.LocalScript 
+		local script = Instance.new('LocalScript', CloseButton)
+
+		local Mainframe = script.Parent.Parent
+		local Button = script.Parent
+
+		Button.MouseButton1Click:Connect(function()
+			Mainframe:Destroy()
+		end)
+	end
+	coroutine.wrap(CDPQJ_fake_script)()
+
+	--Frame
+	local obj = {}
+	function obj:Button(NameButton,Call)
+		local ButtonBtn = Instance.new("TextButton")
+		local UICorner_5 = Instance.new("UICorner")
+
+		ButtonBtn.Name = "ButtonBtn"
+		ButtonBtn.Parent = Scrolling
+		ButtonBtn.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+		ButtonBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ButtonBtn.BorderSizePixel = 0
+		ButtonBtn.Size = UDim2.new(0.936381757, 0, 0.0581896566, 0)
+		ButtonBtn.Font = Library.Font
+		ButtonBtn.Text = "Press me"
+		ButtonBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ButtonBtn.TextScaled = true
+		ButtonBtn.TextSize = 14.000
+		ButtonBtn.TextWrapped = true
+
+		UICorner_5.Parent = ButtonBtn
+
+		ButtonBtn.MouseButton1Click:Connect(function()
+			local success,err = pcall(Call)
+			if not success then
+				warn("Executed Failed [safe call]")
+				warn(err)
+
+				return
+			end
+		end)
+	end
+	function obj:Toggle(NameToggle,Call)
+		local ToggleBtn = Instance.new("TextButton")
+		local UICorner_6 = Instance.new("UICorner")
+
+		local Enabled = false
+
+		ToggleBtn.Name = "ToggleBtn"
+		ToggleBtn.Parent = Scrolling
+		ToggleBtn.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+		ToggleBtn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ToggleBtn.BorderSizePixel = 0
+		ToggleBtn.Position = UDim2.new(0, 0, 0.0581896566, 0)
+		ToggleBtn.Size = UDim2.new(0.936381757, 0, 0.0581896566, 0)
+		ToggleBtn.Font = Library.Font
+		ToggleBtn.Text = NameToggle.." ❌"
+		ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ToggleBtn.TextScaled = true
+		ToggleBtn.TextSize = 14.000
+		ToggleBtn.TextWrapped = true
+
+		UICorner_6.Parent = ToggleBtn
+		
+		ToggleBtn.MouseButton1Click:Connect(function()
+			Enabled = not Enabled
+
+			local success,err = pcall(Call,Enabled)
+
+			if not success then
+				warn("Executed Failed [safe call]")
+				warn(err)
+				return
+			end
+
+			if Enabled then
+				ToggleBtn.Text = NameToggle.." ✅"
+			else
+				ToggleBtn.Text = NameToggle.." ❌"
+			end
+		end)
+	end
+
+	return obj
+
+end
+
+return Library
